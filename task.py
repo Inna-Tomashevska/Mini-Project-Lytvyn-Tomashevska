@@ -40,8 +40,22 @@ coffee_df["Cumulative_Strategy_Return"] = (1 + coffee_df["Strategy_Return"]).cum
 total_market_return = coffee_df["Cumulative_Market_Return"].iloc[-1] - 1
 total_strategy_return = coffee_df["Cumulative_Strategy_Return"].iloc[-1] - 1
 
+initial_investment = 1000
+
+final_market_value = initial_investment*(1+total_market_return)
+final_strategy_value = initial_investment*(1+total_strategy_return)
+
+market_profit = final_market_value - initial_investment
+strategy_profit = final_strategy_value - initial_investment
+
 print(f"Buy & Hold total return: {total_market_return:.2%}")
 print(f"Strategy total return: {total_strategy_return:.2%}")
+
+print(f"Buy & Hold final value: ${final_market_value:.2f}")
+print(f"Strategy final value: ${final_strategy_value:.2f}")
+
+print(f"Buy & Hold P&L: ${market_profit:.2f}")
+print(f"Strategy P&L: ${strategy_profit:.2f}")
 
 buy_signals = coffee_df[coffee_df["Position"] == 1]
 sell_signals = coffee_df[coffee_df["Position"] == -1]
