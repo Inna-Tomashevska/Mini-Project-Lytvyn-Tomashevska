@@ -43,3 +43,18 @@ total_strategy_return = coffee_df["Cumulative_Strategy_Return"].iloc[-1] - 1
 print(f"Buy & Hold total return: {total_market_return:.2%}")
 print(f"Strategy total return: {total_strategy_return:.2%}")
 
+buy_signals = coffee_df[coffee_df["Position"] == 1]
+sell_signals = coffee_df[coffee_df["Position"] == -1]
+
+plt.figure(figsize=(14, 7))
+plt.plot(coffee_df.index, coffee_df["Close"], label="Close Price", alpha=0.6)
+plt.plot(coffee_df.index, coffee_df["20d_Av"], label="20-day MA")
+plt.plot(coffee_df.index, coffee_df["50d_Av"], label="50-day MA")
+plt.scatter(buy_signals.index, buy_signals["Close"], marker="^", color="green", s=100, label="BUY")
+plt.scatter(sell_signals.index, sell_signals["Close"], marker="v", color="red", s=100, label="SELL")
+
+plt.title("COFF.L — Moving Average Crossover Strategy")
+plt.xlabel("Date")
+plt.ylabel("Price")
+plt.legend()
+plt.show()
