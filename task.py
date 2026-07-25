@@ -58,3 +58,13 @@ plt.xlabel("Date")
 plt.ylabel("Price")
 plt.legend()
 plt.show()
+
+plt.figure(figsize=(14, 6))
+plt.plot(coffee_df.index, coffee_df["Cumulative_Market_Return"], label="Buy & Hold")
+plt.plot(coffee_df.index, coffee_df["Cumulative_Strategy_Return"], label="MA Crossover Strategy")
+
+plt.title("Cumulative Return: Strategy vs Buy & Hold")
+plt.xlabel("Date")
+plt.ylabel("Cumulative Return")
+plt.legend()
+plt.show()
